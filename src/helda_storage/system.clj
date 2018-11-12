@@ -5,8 +5,9 @@
 
 (defn new-system [config]
   (component/map->SystemMap
-    {:state {:counter (atom 0)
-             :file (atom nil)}
+    {:db {
+      :models-storage (atom {})
+          }
      :http (component/using
              (http-kit/create
                (:http config)
@@ -15,4 +16,4 @@
                   ; re-create handler on every request
                   (fn [system] #((handler/create system) %))
                   handler/create)})
-             [:state])}))
+             [:db])}))
