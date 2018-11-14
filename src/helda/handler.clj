@@ -1,13 +1,17 @@
 (ns helda-storage.handler
   (:require [plumbing.core :refer [defnk]]
             [kekkonen.cqrs :refer :all]
-            [schema.core :as s]))
+            [schema.core :as s])
+  )
 
 (s/defschema Model
   {
     :id s/Str
     (s/optional-key :description) s/Str
+    :extends [s/Keyword]
+    :relaions [Relation]
     :attrs {s/Keyword s/Str}
+    :listeners
     })
 
 ;;

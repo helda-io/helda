@@ -1,4 +1,4 @@
-# helda-storage api
+# helda-server api
 
 ## Usage
 
