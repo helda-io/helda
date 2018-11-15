@@ -1,11 +1,13 @@
-(ns helda.schema
-  (:require [plumbing.core :refer [defnk]]
-            [kekkonen.cqrs :refer :all]
-            [schema.core :as s])
-  )
+(ns helda.schema [schema.core :as s]))
 
-(s/defschema Model
-  {
+(s/defschema Relation {
+    :relation-type s/Keyword
+    :src-attr s/Keyword
+    :dst-model s/Keyword
+    :dst-attr s/Keyword
+  })
+
+(s/defschema Model {
     :full-name s/Str
     :package s/Keyword
     :name s/Keyword
@@ -13,8 +15,7 @@
     :extends [s/Keyword]
     :relaions [Relation]
     :attrs {s/Keyword s/Keyword}
-    }
-  )
+  })
 
 (s/defschema Listener
   {
@@ -45,10 +46,9 @@
 (s/defschema Event
   {
     :id s/Str
-    :type s/Keyword
+    :listener-type s/Keyword
     :world s/Keyword
-    :model s/Str
+    :model-name s/Str
     :instance Instance
-    :changed-attrs {s/Keyword s/Any}
     }
   )
