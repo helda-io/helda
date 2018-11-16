@@ -17,38 +17,30 @@
     :attrs {s/Keyword s/Keyword}
   })
 
-(s/defschema Listener
-  {
+(s/defschema Listener {
     :id s/Str
     :action-url s/Str
     :world s/Keyword
     :type s/Keyword
     :obj-id s/Str
-    }
-  )
+  })
 
-(s/defschema World
-  {
+(s/defschema World {
     :world s/Keyword
     :description s/String
-    }
-  )
+  })
 
-(s/defschema Instance
-  {
+(s/defschema Instance {
     :id s/Str
     :world s/Keyword
     :model s/Keyword
     :attrs {s/Keyword s/Any}
-    }
-  )
+  })
 
-(s/defschema Event
-  {
+(s/defschema Event {
     :id s/Str
     :listener-type s/Keyword
     :world s/Keyword
-    :model-name s/Str
+    :model s/Str
     :instance Instance
-    }
-  )
+  })
