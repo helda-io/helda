@@ -4,16 +4,6 @@
             [schema.core :as s])
   )
 
-(s/defschema Model
-  {
-    :id s/Str
-    (s/optional-key :description) s/Str
-    :extends [s/Keyword]
-    :relaions [Relation]
-    :attrs {s/Keyword s/Str}
-    :listeners
-    })
-
 ;;
 ;; Handlers
 ;;
@@ -22,7 +12,8 @@
   "Retrieves all models"
   {:responses {:default {:schema [Model]}}}
   [[:db models-storage]]
-  (success (vals @models-storage)))
+  (success (vals @models-storage))
+  )
 
 (defnk ^:query get-model
   "Get model by id"
@@ -40,6 +31,7 @@
     [:db models-storage]
     data :- Model
     ]
+  ;todo add-model  
   (success data)
   )
 

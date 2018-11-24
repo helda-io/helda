@@ -5,15 +5,28 @@
 
 (defn new-system [config]
   (component/map->SystemMap
-    {:db {
-      :models-storage (atom {})
-          }
+    {
+      :db {
+        :models-storage (atom {})
+        :listeners-storage (atom {})
+        :relations-storage (atom {})
+        :worlds-storage (atom {})
+        :instances-storage (atom {})
+        :events-storage (atom {})
+        }
      :http (component/using
              (http-kit/create
                (:http config)
-               {:fn
-                (if (:dev-mode? config)
-                  ; re-create handler on every request
-                  (fn [system] #((handler/create system) %))
-                  handler/create)})
-             [:db])}))
+               {
+                 :fn
+                 (if (:dev-mode? config)
+                    ; re-create handler on every request
+                    (fn [system] #((handler/create system) %))
+                    handler/create
+                    )
+                  }
+                )
+             [:db])
+      }
+    )
+  )
