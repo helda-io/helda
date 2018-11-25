@@ -13,7 +13,7 @@ user=> (go)
 
 ```
 lein uberjar
-java -server -jar target/helda-storage.jar
+java -server -jar target/helda.jar
 ```
 
 ## License

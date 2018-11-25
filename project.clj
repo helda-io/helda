@@ -1,4 +1,4 @@
-(defproject helda-storage "0.1.0-SNAPSHOT"
+(defproject helda "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [http-kit "2.1.19"]
@@ -6,6 +6,6 @@
                  [reloaded.repl "0.2.2"]
                  [metosin/palikka "0.5.1"]
                  [metosin/kekkonen "0.3.2"]]
-  :profiles {:uberjar {:aot [helda-storage.main]
-                       :main helda-storage.main
-                       :uberjar-name "helda-storage.jar"}})
+  :profiles {:uberjar {:aot [helda.main]
+                       :main helda.main
+                       :uberjar-name "helda.jar"}})

@@ -1,4 +1,8 @@
-(ns helda.schema [schema.core :as s]))
+(ns helda.schema
+  (:require
+    [schema.core :as s]
+    )
+  )
 
 (s/defschema Relation {
     :relation-type s/Keyword
@@ -27,7 +31,7 @@
 
 (s/defschema World {
     :world s/Keyword
-    :description s/String
+    :description s/Str
   })
 
 (s/defschema Instance {

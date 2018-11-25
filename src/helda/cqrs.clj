@@ -1,8 +1,7 @@
-(ns helda-storage.handler
+(ns helda.cqrs
   (:require
-    [plumbing.core :refer [defnk]]
     [kekkonen.cqrs :refer :all]
-    [schema.core :as s]
+    [helda.handlers.models :as m]
     )
   )
 
@@ -10,11 +9,16 @@
   (cqrs-api
     {:swagger {:ui "/"
                :spec "/swagger.json"
-               :data {:info {:title "Helda-storage API"
+               :data {:info {:title "Helda API"
                              :description "created with http://kekkonen.io"}}}
      :core {
        :handlers {
-         :models [#'all-models #'get-model #'add-model]
+         :models [
+          #'m/packages-list
+          #'m/package-models
+          #'m/get-model
+          #'m/add-model
+          ]
        }
        :context system
        }

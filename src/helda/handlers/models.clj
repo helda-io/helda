@@ -1,8 +1,10 @@
-(ns helda-storage.handler
+(ns helda.handlers.models
   (:require
     [plumbing.core :refer [defnk]]
     [kekkonen.cqrs :refer :all]
     [schema.core :as s]
+
+    [helda.schema :as hs]
     )
   )
 
@@ -19,7 +21,7 @@
 
 (defnk ^:query package-models
   "Retrieves all models for package"
-  {:responses {:default {:schema [Model]}}}
+  {:responses {:default {:schema [hs/Model]}}}
   [
     [:db models-storage]
     [:data package :- s/Keyword]
@@ -38,10 +40,10 @@
 
 (defnk ^:command add-model
   "Add model"
-  {:responses {:default {:schema Model}}}
+  {:responses {:default {:schema hs/Model}}}
   [
     [:db models-storage]
-    data :- Model
+    data :- hs/Model
     ]
   ;todo add-model
   (success data)
