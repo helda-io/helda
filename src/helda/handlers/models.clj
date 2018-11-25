@@ -13,7 +13,7 @@
 ;;
 
 (defnk ^:query packages-list
-  "List of available packages"
+  "List of available packages. Can be filtered by tags."
   {:responses {:default {:schema [s/Keyword]}}}
   [[:db models-storage]]
   (success (vals @models-storage))

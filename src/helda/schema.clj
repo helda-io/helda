@@ -34,7 +34,7 @@
     :description s/Str
   })
 
-(s/defschema Instance {
+(s/defschema Entity {
     :id s/Str
     :world s/Keyword
     :model s/Keyword
@@ -46,5 +46,5 @@
     :listener-type s/Keyword
     :world s/Keyword
     :model s/Str
-    :instance Instance
+    :instance Object
   })
