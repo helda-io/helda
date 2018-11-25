@@ -20,7 +20,7 @@
   {:responses {:default {:schema [hs/Entity]}}}
   [
     [:db entities-storage]
-    [:data world :- s/Keyword]
+    [:data world :- s/Keyword tags :- [s/Keyword] models :- [s/Keyword]]
     ]
   (success (vals @entities-storage))
   )

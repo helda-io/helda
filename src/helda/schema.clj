@@ -12,7 +12,7 @@
   })
 
 (s/defschema Model {
-    :full-name s/Str
+    :full-name s/Keyword
     :package s/Keyword
     :name s/Keyword
     (s/optional-key :description) s/Str
