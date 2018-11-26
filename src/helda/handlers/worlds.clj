@@ -11,47 +11,27 @@
 (defnk ^:query worlds-list
   "List of available worlds. Can be filtered by tags."
   {:responses {:default {:schema [s/Keyword]}}}
-  [[:db entities-storage]]
-  (success (vals @entities-storage))
+  [[:db worlds-storage]]
+  (success (vals @worlds-storage))
   )
 
-(defnk ^:query entities
-  "Retrieves all entities for world. Can be filtered by tags or models."
-  {:responses {:default {:schema [hs/Entity]}}}
+(defnk ^:query get-world
+  "Get world by id"
+  {:responses {:default {:schema hs/World}}}
   [
-    [:db entities-storage]
-    [:data world :- s/Keyword tags :- [s/Keyword] models :- [s/Keyword]]
+    [:db worlds-storage]
+    [:data id :- s/Str]
     ]
-  (success (vals @entities-storage))
+  (success {:ping "pong"})
   )
 
-  (defnk ^:query get-entity
-    "Get entity by id"
-    [
-      [:db entities-storage]
-      [:data name :- s/Keyword]
-      ]
-    (success {:ping "pong"})
-    )
-
-  (defnk ^:command add-world
-    "Add world"
-    {:responses {:default {:schema hs/World}}}
-    [
-      [:db worlds-storage]
-      data :- hs/World
-      ]
-    ;todo add-entity
-    (success data)
-    )
-
-  (defnk ^:command add-entity
-    "Add entity"
-    {:responses {:default {:schema hs/Entity}}}
-    [
-      [:db entities-storage]
-      data :- hs/Entity
-      ]
-    ;todo add-entity
-    (success data)
-    )
+(defnk ^:command add-world
+  "Add world"
+  {:responses {:default {:schema hs/World}}}
+  [
+    [:db worlds-storage]
+    data :- hs/World
+    ]
+  ;todo add-entity
+  (success data)
+  )

@@ -11,7 +11,7 @@
         :listeners-storage (atom {})
         :relations-storage (atom {})
         :worlds-storage (atom {})
-        :objects-storage (atom {})
+        :entities-storage (atom {})
         :events-storage (atom {})
         }
      :http (component/using
