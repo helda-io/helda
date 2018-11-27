@@ -9,7 +9,6 @@
       :db {
         :models-storage (atom {})
         :listeners-storage (atom {})
-        :relations-storage (atom {})
         :worlds-storage (atom {})
         :entities-storage (atom {})
         :events-storage (atom {})
