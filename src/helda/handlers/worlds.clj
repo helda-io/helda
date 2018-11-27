@@ -8,6 +8,13 @@
     )
   )
 
+(defnk ^:query tags-list
+  "List of available tags. Can be filtered by tags."
+  {:responses {:default {:schema [s/Keyword]}}}
+  [[:db worlds-storage]]
+  (success (vals @worlds-storage))
+  )
+
 (defnk ^:query worlds-list
   "List of available worlds. Can be filtered by tags."
   {:responses {:default {:schema [s/Keyword]}}}

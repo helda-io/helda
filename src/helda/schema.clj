@@ -32,12 +32,14 @@
 (s/defschema World {
     :world s/Keyword
     :description s/Str
+    :tags [s/Keyword]
   })
 
 (s/defschema Entity {
     :id s/Str
     :world s/Keyword
     :model s/Keyword
+    :tags [s/Keyword]
     :attrs {s/Keyword s/Any}
   })
 

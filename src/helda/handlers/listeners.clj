@@ -9,24 +9,23 @@
   )
 
 (defnk ^:query listeners
-  "Retrieves all listeners for world. Can be filtered by tags, models or entities."
+  "Retrieves all listeners for world. Can be filtered by models or entities."
   {:responses {:default {:schema [hs/Listener]}}}
   [
-    [:db entities-storage]
+    [:db listeners-storage]
     [:data
       world :- s/Keyword
-      tags :- [s/Keyword]
       models :- [s/Keyword]
       entities :- [s/Str]
       ]
     ]
-  (success (vals @entities-storage))
+  (success (vals @listeners-storage))
   )
 
 (defnk ^:query get-listener
   "Get listener by id"
   [
-    [:db entities-storage]
+    [:db listeners-storage]
     [:data id :- s/Str]
     ]
   (success {:ping "pong"})
