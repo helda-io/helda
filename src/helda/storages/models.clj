@@ -15,8 +15,12 @@
     )
   )
 
+(defn packages-list []
+  (find-distinct models-storage :package)
+  )
+
 (defn find-models-by-package [package]
-  (find-all channel-msgs-storage
+  (find-all models-storage
     {:package package}
     (array-map :full-name 1)
     )

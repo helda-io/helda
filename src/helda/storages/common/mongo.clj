@@ -50,10 +50,10 @@
     (unmongify (mc/find-map-by-id db collection-name (ObjectId. id)))
     )
 
-  (find-one [this key id]
+  (find-one [this field value]
     (->
       (mq/with-collection db collection-name
-        (mq/find (mongify {key id}))
+        (mq/find (mongify {field value}))
         (mq/sort nil)
         )
       first
@@ -67,6 +67,12 @@
         (mq/find (mongify where-fields))
         (mq/sort sort-fields)
         )
+      )
+    )
+
+  (find-distinct [this field]
+    (map #(get % field)
+      (mc/distinct db collection-name field)
       )
     )
 
