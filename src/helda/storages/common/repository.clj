@@ -1,4 +1,4 @@
-(ns concierge-bot.storages.common.repository)
+(ns helda.storages.common.repository)
 
 (defprotocol Repository
   (index [this fields unique])

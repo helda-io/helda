@@ -5,9 +5,7 @@
     )
   )
 
-(def ^:dynamic models-storage nil)
-
-(defn init-models-storage [mongo-db]
+(defn init-models-mongo-storage [mongo-db]
   ;Issue if use keyword (str) didn't help somewhy
   (-> (mongo-repository mongo-db "models")
     (fk-index [:full-name] true)
@@ -15,17 +13,17 @@
     )
   )
 
-(defn packages-list []
-  (find-distinct models-storage :package)
+(defn packages-list [storage]
+  (find-distinct storage :package)
   )
 
-(defn find-models-by-package [package]
-  (find-all models-storage
+(defn find-models-by-package [storage package]
+  (find-all storage
     {:package package}
     (array-map :full-name 1)
     )
   )
 
-(defn create-model [model]
-  (save models-storage model)
+(defn create-model [storage model]
+  (save storage model)
   )

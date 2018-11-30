@@ -1,4 +1,4 @@
-(ns concierge-bot.storages.common.mongo
+(ns helda.storages.common.mongo
   (:require
     [environ.core :refer [env]]
     [monger.core :as mg]
@@ -7,7 +7,7 @@
     [monger.operators :refer :all]
     [clojure.set :refer [rename-keys]]
 
-    [concierge-bot.storages.repository :refer :all]
+    [helda.storages.common.repository :refer :all]
     )
   (:import org.bson.types.ObjectId)
   ; (:use clojure.tools.trace)
