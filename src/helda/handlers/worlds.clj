@@ -22,12 +22,21 @@
 (defnk ^:query worlds-list
   "List of available worlds. Can be filtered by tags."
   {:responses {:default {:schema [s/Keyword]}}}
+  [[:db worlds-storage]]
+  (success
+    (storage/worlds-list worlds-storage)
+    )
+  )
+
+(defnk ^:query worlds-by-tags
+  "Find worlds by tags."
+  {:responses {:default {:schema [s/Keyword]}}}
   [
     [:db worlds-storage]
     [:data tags :- [s/Str]]
     ]
   (success
-    (storage/worlds-list worlds-storage)
+    (storage/find-worlds-by-tags worlds-storage tags)
     )
   )
 

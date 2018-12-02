@@ -24,6 +24,7 @@
           ]
         :worlds [
           #'w/tags-list
+          #'w/worlds-by-tags
           #'w/worlds-list
           #'w/get-world
           #'w/add-world
