@@ -7,15 +7,16 @@
     [helda.storages.common.mongo :refer [init-mongo-db]]
 
     [helda.storages.models :refer [init-models-mongo-storage]]
+    [helda.storages.worlds :refer [init-worlds-mongo-storage]]
     )
   )
 
 (defn init-db [mongodb]
   {
     :models-storage (init-models-mongo-storage mongodb)
-    :listeners-storage (atom {})
-    :worlds-storage (atom {})
+    :worlds-storage (init-worlds-mongo-storage mongodb)
     :entities-storage (atom {})
+    :listeners-storage (atom {})
     :events-storage (atom {})
     }
   )

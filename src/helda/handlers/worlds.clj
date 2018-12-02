@@ -5,6 +5,7 @@
     [schema.core :as s]
 
     [helda.schema :as hs]
+    [helda.storages.worlds :as storage]
     )
   )
 
@@ -19,7 +20,9 @@
   "List of available worlds. Can be filtered by tags."
   {:responses {:default {:schema [s/Keyword]}}}
   [[:db worlds-storage]]
-  (success (vals @worlds-storage))
+  (success
+    (storage/worlds-list worlds-storage)
+    )
   )
 
 (defnk ^:query get-world
@@ -27,9 +30,11 @@
   {:responses {:default {:schema hs/World}}}
   [
     [:db worlds-storage]
-    [:data id :- s/Str]
+    [:data world :- s/Str]
     ]
-  (success {:ping "pong"})
+  (success
+    (storage/find-world-by-name worlds-storage world)
+    )
   )
 
 (defnk ^:command add-world
@@ -40,5 +45,7 @@
     data :- hs/World
     ]
   ;todo add-entity
-  (success data)
+  (success
+    (storage/create-world worlds-storage data)
+    )
   )
