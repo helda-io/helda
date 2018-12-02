@@ -5,6 +5,7 @@
     [schema.core :as s]
 
     [helda.schema :as hs]
+    [helda.storages.models :as storage]
     )
   )
 
@@ -16,7 +17,9 @@
   "List of available packages. Can be filtered by tags."
   {:responses {:default {:schema [s/Keyword]}}}
   [[:db models-storage]]
-  (success (vals @models-storage))
+  (success
+    (storage/packages-list models-storage)
+    )
   )
 
 (defnk ^:query package-models
@@ -45,6 +48,7 @@
     [:db models-storage]
     data :- hs/Model
     ]
-  ;todo add-model
-  (success data)
+  (success
+    (storage/create-model models-storage data)
+    )
   )

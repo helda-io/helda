@@ -9,6 +9,7 @@
     [metosin/kekkonen "0.3.2"]
     [com.novemberain/monger "3.1.0"]
     [environ "1.0.0"]
+    [org.clojure/tools.trace "0.7.9"]
   ]
   :profiles {:uberjar {:aot [helda.main]
                        :main helda.main

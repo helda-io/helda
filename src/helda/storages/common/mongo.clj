@@ -71,9 +71,7 @@
     )
 
   (find-distinct [this field]
-    (map #(get % field)
-      (mc/distinct db collection-name field)
-      )
+    (mc/distinct db collection-name field)
     )
 
   (save [this rec]
