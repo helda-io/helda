@@ -7,6 +7,7 @@
     [helda.schema :as hs]
     [helda.storages.worlds :as storage]
     )
+  ; (:use clojure.tools.trace)
   )
 
 (defnk ^:query tags-list
@@ -21,7 +22,10 @@
 (defnk ^:query worlds-list
   "List of available worlds. Can be filtered by tags."
   {:responses {:default {:schema [s/Keyword]}}}
-  [[:db worlds-storage]]
+  [
+    [:db worlds-storage]
+    [:data tags :- [s/Str]]
+    ]
   (success
     (storage/worlds-list worlds-storage)
     )
