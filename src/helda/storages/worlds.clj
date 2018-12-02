@@ -13,6 +13,10 @@
     )
   )
 
+(defn tags-list [storage]
+  (find-distinct storage :tags)
+  )
+
 (defn worlds-list [storage]
   (find-all storage {} (array-map :world 1))
   )

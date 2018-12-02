@@ -13,7 +13,9 @@
   "List of available tags. Can be filtered by tags."
   {:responses {:default {:schema [s/Keyword]}}}
   [[:db worlds-storage]]
-  (success (vals @worlds-storage))
+  (success
+    (storage/tags-list worlds-storage)
+    )
   )
 
 (defnk ^:query worlds-list
