@@ -29,7 +29,9 @@
     [:db models-storage]
     [:data package :- s/Keyword]
     ]
-  (success (vals @models-storage))
+  (success
+    (storage/find-models-by-package models-storage package)
+    )
   )
 
 (defnk ^:query get-model
@@ -38,7 +40,9 @@
     [:db models-storage]
     [:data name :- s/Keyword]
     ]
-  (success {:ping "pong"})
+  (success
+    (storage/find-model-by-name models-storage name)
+    )
   )
 
 (defnk ^:command add-model

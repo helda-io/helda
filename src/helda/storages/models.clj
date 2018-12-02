@@ -24,6 +24,10 @@
     )
   )
 
+(defn find-model-by-name [storage full-name]
+  (find-one storage :full-name full-name)
+  )
+
 (defn create-model [storage model]
   (save storage model)
   )
