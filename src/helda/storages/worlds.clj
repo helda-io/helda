@@ -31,6 +31,7 @@
   (find-one storage :world world-name)
   )
 
+;todo rename to save-model
 (defn create-world [storage world]
   (save storage world)
   )
