@@ -29,7 +29,7 @@
     [:data world :- s/Keyword models :- [s/Keyword]]
     ]
   (success
-    (storage/find-worlds-by-world-and-models entities-storage world models)
+    (storage/find-entities-by-world-and-models entities-storage world models)
     )
   )
 
@@ -41,11 +41,11 @@
     [:data world :- s/Keyword tags :- [s/Keyword]]
     ]
   (success
-    (storage/find-worlds-by-world-and-tags entities-storage world tags)
+    (storage/find-entities-by-world-and-tags entities-storage world tags)
     )
   )
 
-(defnk ^:query entities-by-models-and-tags
+(defnk ^:query entities-by-tags-and-models
   "Retrieves all entities for world filtered by tags or models."
   {:responses {:default {:schema [hs/Entity]}}}
   [
@@ -57,7 +57,7 @@
       ]
     ]
   (success
-    (storage/find-worlds-by-tags-and-models entities-storage world tags models)
+    (storage/find-entities-by-tags-and-models entities-storage world tags models)
     )
   )
 
@@ -71,7 +71,7 @@
   (success {:ping "pong"})
   )
 
-(defnk ^:command add-entity
+(defnk ^:command save-entity
   "Add entity"
   {:responses {:default {:schema hs/Entity}}}
   [
@@ -79,5 +79,7 @@
     data :- hs/Entity
     ]
   ;todo add-entity
-  (success data)
+  (success
+    (storage/save-entity entity-storage data)
+    )
   )

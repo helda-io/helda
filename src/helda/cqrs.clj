@@ -30,9 +30,12 @@
           #'w/add-world
           ]
         :entities [
-          #'e/entities
+          #'e/entities-by-world
+          #'e/entities-by-models
+          #'e/entities-by-tags
+          #'e/entities-by-tags-and-models
           #'e/get-entity
-          #'e/add-entity
+          #'e/save-entity
           ]
         :listeners [
           #'l/listeners
