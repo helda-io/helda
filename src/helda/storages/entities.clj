@@ -22,10 +22,21 @@
 
 (defn find-worlds-by-world-and-tags [storage world tags]
   (find-all storage
-    {
-      :world world
-      :tags {$in tags}
-      }
+    {:world world :tags {$in tags}}
+    (array-map :_id 1)
+    )
+  )
+
+(defn find-worlds-by-world-and-models [storage world models]
+  (find-all storage
+    {:world world :model {$in models}}
+    (array-map :_id 1)
+    )
+  )
+
+(defn find-worlds-by-tags-and-models [storage world tags models]
+  (find-all storage
+    {:world world :model {$in models} :tags {$in tags}}
     (array-map :_id 1)
     )
   )

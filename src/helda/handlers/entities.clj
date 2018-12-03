@@ -5,11 +5,48 @@
     [schema.core :as s]
 
     [helda.schema :as hs]
+    [helda.storages.entities :as storage]
     )
   )
 
-(defnk ^:query entities
-  "Retrieves all entities for world. Can be filtered by tags or models."
+(defnk ^:query entities-by-world
+  "Retrieves all entities for world."
+  {:responses {:default {:schema [hs/Entity]}}}
+  [
+    [:db entities-storage]
+    [:data world :- s/Keyword]
+    ]
+  (success
+    (storage/find-entities-by-world entities-storage world)
+    )
+  )
+
+(defnk ^:query entities-by-models
+  "Retrieves all entities for world filtered by models."
+  {:responses {:default {:schema [hs/Entity]}}}
+  [
+    [:db entities-storage]
+    [:data world :- s/Keyword models :- [s/Keyword]]
+    ]
+  (success
+    (storage/find-worlds-by-world-and-models entities-storage world models)
+    )
+  )
+
+(defnk ^:query entities-by-tags
+  "Retrieves all entities for world filtered by tags."
+  {:responses {:default {:schema [hs/Entity]}}}
+  [
+    [:db entities-storage]
+    [:data world :- s/Keyword tags :- [s/Keyword]]
+    ]
+  (success
+    (storage/find-worlds-by-world-and-tags entities-storage world tags)
+    )
+  )
+
+(defnk ^:query entities-by-models-and-tags
+  "Retrieves all entities for world filtered by tags or models."
   {:responses {:default {:schema [hs/Entity]}}}
   [
     [:db entities-storage]
@@ -19,7 +56,9 @@
       models :- [s/Keyword]
       ]
     ]
-  (success (vals @entities-storage))
+  (success
+    (storage/find-worlds-by-tags-and-models entities-storage world tags models)
+    )
   )
 
 (defnk ^:query get-entity
