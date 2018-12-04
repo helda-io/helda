@@ -68,7 +68,9 @@
     [:db entities-storage]
     [:data id :- s/Str]
     ]
-  (success {:ping "pong"})
+  (success
+    (storage/find-entity-by-id entities-storage id)
+    )
   )
 
 (defnk ^:command save-entity
@@ -80,6 +82,6 @@
     ]
   ;todo add-entity
   (success
-    (storage/save-entity entity-storage data)
+    (storage/save-entity entities-storage data)
     )
   )

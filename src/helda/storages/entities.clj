@@ -41,6 +41,10 @@
     )
   )
 
+(defn find-entity-by-id [storage id]
+  (find-one storage id)
+  )
+
 (defn save-entity [storage entity]
   (save storage entity)
   )

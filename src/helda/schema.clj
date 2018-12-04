@@ -36,7 +36,6 @@
   })
 
 (s/defschema Entity {
-    :id s/Str
     :world s/Keyword
     :model s/Keyword
     :tags [s/Keyword]
