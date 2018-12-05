@@ -11,7 +11,7 @@
     (s/optional-key :description) s/Str
     :extends [s/Keyword]
     :attrs {s/Keyword s/Str} ;{attr schema}
-    :actions {s/Keyword s/Keyword} ;{action model}
+    :actions {s/Keyword s/Keyword} ;{action model} ;todo add description
   })
 
 (s/defschema World {
@@ -37,8 +37,8 @@
 
 (s/defschema Event {
     :id s/Str
-    :action s/Keyword
-    :action-entity-id s/Str
     :listener-id s/Str
-    :instance Entity
+    :action s/Keyword
+    :action-ctx Entity
+    :entity Entity
   })
