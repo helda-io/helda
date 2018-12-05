@@ -28,6 +28,13 @@
     :parent-id s/Str
   })
 
+(s/defschema ModelListener {
+    :action-url s/Str
+    :world s/Keyword
+    :action s/Keyword
+    :model s/Keyword
+  })
+
 (s/defschema EntityListener {
     :action-url s/Str
     :world s/Keyword
