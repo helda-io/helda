@@ -23,6 +23,6 @@
   (find-one storage id)
   )
 
-(defn save-model-listener [storage listener]
+(defn save-listener [storage listener]
   (save storage listener)
   )

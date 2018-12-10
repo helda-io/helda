@@ -5,7 +5,9 @@
     [schema.core :as s]
 
     [helda.schema :as hs]
+    ;todo replace :as with :refer
     [helda.storages.models :as storage]
+    [helda.storages.model-listeners :as listeners-storage]
     )
   )
 
@@ -45,6 +47,18 @@
     )
   )
 
+(defnk ^:query listeners-by-model
+  "Get all model listeners per model"
+  {:responses {:default {:schema [hs/ModelListener]}}}
+  [
+    [:db model-listeners-storage]
+    [:data model :- s/Keyword]
+    ]
+  (success
+    (listeners-storage/find-listeners-by-model model-listeners-storage model)
+    )
+  )
+
 (defnk ^:command add-model
   "Add model"
   {:responses {:default {:schema hs/Model}}}
@@ -57,13 +71,14 @@
     )
   )
 
-; (defnk ^:command add-model-listener
-;   "Add model listener"
-;   {:responses {:default {:schema hs/ModelListener}}}
-;   [
-;     [:db model-listeners-storage]
-;     data :- hs/ModelListener
-;     ]
-;   ;todo add-listener
-;   (success data)
-;   )
+(defnk ^:command add-model-listener
+  "Add model listener"
+  {:responses {:default {:schema hs/ModelListener}}}
+  [
+    [:db model-listeners-storage]
+    data :- hs/ModelListener
+    ]
+  (success
+    (listeners-storage/save-listener model-listeners-storage data)
+    )
+  )

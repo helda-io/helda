@@ -20,6 +20,8 @@
           #'m/package-models
           #'m/get-model
           #'m/add-model
+          #'m/listeners-by-model
+          #'m/add-model-listener
           ]
         :worlds [
           #'w/tags-list
