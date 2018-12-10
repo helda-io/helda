@@ -56,3 +56,14 @@
     (storage/create-model models-storage data)
     )
   )
+
+; (defnk ^:command add-model-listener
+;   "Add model listener"
+;   {:responses {:default {:schema hs/ModelListener}}}
+;   [
+;     [:db model-listeners-storage]
+;     data :- hs/ModelListener
+;     ]
+;   ;todo add-listener
+;   (success data)
+;   )

@@ -4,7 +4,6 @@
     [helda.handlers.models :as m]
     [helda.handlers.worlds :as w]
     [helda.handlers.entities :as e]
-    [helda.handlers.listeners :as l]
     )
   )
 
@@ -36,11 +35,6 @@
           #'e/entities-by-tags-and-models
           #'e/get-entity
           #'e/save-entity
-          ]
-        :listeners [
-          #'l/listeners
-          #'l/get-listener
-          #'l/add-listener
           ]
        }
        :context system
