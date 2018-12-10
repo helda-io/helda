@@ -37,6 +37,7 @@
           #'e/entities-by-tags-and-models
           #'e/get-entity
           #'e/save-entity
+          #'e/add-entity-listener
           ]
        }
        :context system

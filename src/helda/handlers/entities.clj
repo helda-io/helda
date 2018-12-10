@@ -6,6 +6,7 @@
 
     [helda.schema :as hs]
     [helda.storages.entities :as storage]
+    [helda.storages.entity-listeners :as listeners-storage]
     )
   )
 
@@ -73,6 +74,20 @@
     )
   )
 
+(defnk ^:query listeners-by-entity-id
+  "Get all entity listeners per id"
+  {:responses {:default {:schema [hs/EntityListener]}}}
+  [
+    [:db entity-listeners-storage]
+    [:data entity-id :- s/Str]
+    ]
+  (success
+    (listeners-storage/find-listeners-by-entity-id
+      entity-listeners-storage entity-id
+      )
+    )
+  )
+
 (defnk ^:command save-entity
   "Add entity"
   {:responses {:default {:schema hs/Entity}}}
@@ -83,5 +98,17 @@
   ;todo add-entity
   (success
     (storage/save-entity entities-storage data)
+    )
+  )
+
+(defnk ^:command add-entity-listener
+  "Add entity listener"
+  {:responses {:default {:schema hs/EntityListener}}}
+  [
+    [:db entity-listeners-storage]
+    data :- hs/EntityListener
+    ]
+  (success
+    (listeners-storage/save-listener entity-listeners-storage data)
     )
   )
