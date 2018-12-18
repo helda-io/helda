@@ -6,8 +6,8 @@
 
     [helda.schema :as hs]
     ;todo replace :as with :refer
-    [helda.storages.models :refer [save-model]]
-    [helda.storages.model-listeners :refer [save-listener]]
+    [helda.storages.models :as storage]
+    [helda.storages.model-listeners :refer [find-listeners-by-model save-listener]]
     )
   )
 
@@ -55,7 +55,7 @@
     [:data model :- s/Keyword]
     ]
   (success
-    (listeners-storage/find-listeners-by-model model-listeners-storage model)
+    (find-listeners-by-model model-listeners-storage model)
     )
   )
 
@@ -67,7 +67,7 @@
     data :- hs/Model
     ]
   (success
-    (save-model models-storage data)
+    (storage/save-model models-storage data)
     )
   )
 
