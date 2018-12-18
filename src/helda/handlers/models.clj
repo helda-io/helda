@@ -6,8 +6,8 @@
 
     [helda.schema :as hs]
     ;todo replace :as with :refer
-    [helda.storages.models :as storage]
-    [helda.storages.model-listeners :as listeners-storage]
+    [helda.storages.models :refer [save-model]]
+    [helda.storages.model-listeners :refer [save-listener]]
     )
   )
 
@@ -59,7 +59,7 @@
     )
   )
 
-(defnk ^:command add-model
+(defnk ^:command save-model
   "Add model"
   {:responses {:default {:schema hs/Model}}}
   [
@@ -67,7 +67,7 @@
     data :- hs/Model
     ]
   (success
-    (storage/create-model models-storage data)
+    (save-model models-storage data)
     )
   )
 
@@ -79,6 +79,6 @@
     data :- hs/ModelListener
     ]
   (success
-    (listeners-storage/save-listener model-listeners-storage data)
+    (save-listener model-listeners-storage data)
     )
   )

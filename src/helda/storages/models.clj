@@ -28,7 +28,6 @@
   (find-one storage :full-name full-name)
   )
 
-;todo rename to save-model
-(defn create-model [storage model]
+(defn save-model [storage model]
   (save storage model)
   )

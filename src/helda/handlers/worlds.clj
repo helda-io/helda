@@ -52,7 +52,7 @@
     )
   )
 
-(defnk ^:command add-world
+(defnk ^:command save-world
   "Add world"
   {:responses {:default {:schema hs/World}}}
   [
@@ -61,6 +61,6 @@
     ]
   ;todo add-entity
   (success
-    (storage/create-world worlds-storage data)
+    (storage/save-world worlds-storage data)
     )
   )

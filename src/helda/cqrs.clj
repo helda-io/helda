@@ -19,7 +19,7 @@
           #'m/packages-list
           #'m/package-models
           #'m/get-model
-          #'m/add-model
+          #'m/save-model
           #'m/listeners-by-model
           #'m/add-model-listener
           ]
@@ -28,7 +28,7 @@
           #'w/worlds-by-tags
           #'w/worlds-list
           #'w/get-world
-          #'w/add-world
+          #'w/save-world
           ]
         :entities [
           #'e/entities-by-world
