@@ -6,9 +6,11 @@
 
 (s/defschema Model {
     :full-name s/Keyword
+
     :package s/Keyword
     :name s/Keyword
     (s/optional-key :description) s/Str
+
     :extends [s/Keyword]
     :attrs {s/Keyword s/Str} ;{attr schema}
     :actions {s/Keyword s/Keyword} ;{action model} ;todo add description
@@ -16,7 +18,7 @@
 
 (s/defschema World {
     :world s/Keyword
-    :description s/Str
+    (s/optional-key :description) s/Str
     :tags [s/Keyword]
   })
 
@@ -24,7 +26,10 @@
     :world s/Keyword
     :model s/Keyword
     :tags [s/Keyword]
+    (s/optional-key :description) s/Str
+
     :attrs {s/Keyword s/Any}
+
     (s/optional-key :id) s/Str
     (s/optional-key :parent-id) s/Str
   })
