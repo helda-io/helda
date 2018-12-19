@@ -25,7 +25,8 @@
     :model s/Keyword
     :tags [s/Keyword]
     :attrs {s/Keyword s/Any}
-    :parent-id s/Str
+    (s/optional-key :id) s/Str
+    (s/optional-key :parent-id) s/Str
   })
 
 (s/defschema ModelListener {
