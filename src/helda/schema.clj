@@ -12,7 +12,7 @@
     (s/optional-key :description) s/Str
 
     :extends [s/Keyword]
-    :attrs {s/Keyword s/Str} ;{attr schema}
+    :fields {s/Keyword s/Str} ;{field schema}
     :actions {s/Keyword s/Keyword} ;{action model} ;todo add description
   })
 
