@@ -4,6 +4,12 @@
     )
   )
 
+(s/defschema Action{
+  :source-model s/Str
+  :target-model s/Str
+  :action-ctx {s/Keyword s/Str} ;model per key
+  })
+
 (s/defschema Model {
     :full-name s/Keyword
 
@@ -13,7 +19,7 @@
 
     :extends [s/Keyword]
     :fields {s/Keyword s/Str} ;{field schema}
-    :actions {s/Keyword s/Keyword} ;{action model} ;todo add description
+    :actions {s/Keyword Action}
   })
 
 (s/defschema World {
