@@ -6,8 +6,7 @@
 
 (s/defschema Action{
   :source-model s/Str
-  :target-model s/Str
-  :action-ctx {s/Keyword s/Str} ;model per key
+  (s/optional-key :action-ctx) {s/Keyword s/Str} ;model per key
   })
 
 (s/defschema Model {
