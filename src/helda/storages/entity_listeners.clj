@@ -7,7 +7,7 @@
 
 (defn init-entity-listeners-mongo-storage [mongo-db]
   ;Issue if use keyword (str) didn't help somewhy
-  (-> (mongo-repository mongo-db "entity-listeners")
+  (-> (mongo-repository mongo-db "entity_listeners")
     (fk-index [:entity-id] false)
     )
   )

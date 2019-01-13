@@ -7,7 +7,7 @@
 
 (defn init-model-listeners-mongo-storage [mongo-db]
   ;Issue if use keyword (str) didn't help somewhy
-  (-> (mongo-repository mongo-db "model-listeners")
+  (-> (mongo-repository mongo-db "model_listeners")
     (fk-index [:model] false)
     )
   )
