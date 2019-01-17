@@ -8,13 +8,13 @@
 (defn init-entity-listeners-mongo-storage [mongo-db]
   ;Issue if use keyword (str) didn't help somewhy
   (-> (mongo-repository mongo-db "entity_listeners")
-    (fk-index [:entity-id] false)
+    (fk-index [:entity-id :action] false)
     )
   )
 
-(defn find-listeners-by-entity-id [storage entity-id]
+(defn find-listeners-by-entity-id [storage entity-id action]
   (find-all storage
-    {:entity-id entity-id}
+    {:entity-id entity-id :action action}
     (array-map :_id 1)
     )
   )
