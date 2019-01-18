@@ -1,7 +1,5 @@
 (ns helda.system
   (:require
-    [com.stuartsierra.component :as component]
-    [palikka.components.http-kit :as http-kit]
     [helda.cqrs :as cqrs]
 
     [helda.storages.common.mongo :refer [init-mongo-db]]
@@ -25,23 +23,6 @@
     }
   )
 
-(defn new-system [config]
-  (component/map->SystemMap
-    {
-     :db (init-db (init-mongo-db))
-     :http (component/using
-             (http-kit/create
-               (:http config)
-               {
-                 :fn
-                 (if (:dev-mode? config)
-                    ; re-create handler on every request
-                    (fn [system] #((cqrs/create system) %))
-                    cqrs/create
-                    )
-                  }
-                )
-             [:db])
-      }
-    )
-  )
+(defn new-system [] {
+   :db (init-db (init-mongo-db))
+  })

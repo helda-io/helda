@@ -1,10 +1,19 @@
 (ns helda.main
-  (:require [com.stuartsierra.component :as component]
-            [reloaded.repl :refer [set-init! go]])
-  (:gen-class))
+  (:require
+    [org.httpkit.server :as server]
+    [helda.cqrs :as cqrs]
+    [helda.system :as system]
+    )
+  (:gen-class)
+  )
 
 (defn -main [& [port]]
   (let [port (or port 3000)]
-    (require 'helda.system)
-    (set-init! #((resolve 'helda.system/new-system) {:http {:port port}}))
-    (go)))
+    (server/run-server
+      (cqrs/create
+        (system/new-system)
+        )
+      {:port port}
+      )
+    )
+  )
