@@ -3,7 +3,6 @@
   :dependencies [
     [org.clojure/clojure "1.8.0"]
     [http-kit "2.1.19"]
-    [metosin/palikka "0.5.1"]
     [metosin/kekkonen "0.3.2"]
     [com.novemberain/monger "3.1.0"]
     [environ "1.0.0"]
