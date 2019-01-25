@@ -51,7 +51,6 @@
   "Get all model listeners per model"
   {:responses {:default {:schema [hs/ModelListener]}}}
   [
-    ;[:db model-listeners-storage]
     [:components db]
     [:data model :- s/Keyword]
     ]

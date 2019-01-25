@@ -16,7 +16,7 @@
   "Retrieves all entities for world."
   {:responses {:default {:schema [hs/Entity]}}}
   [
-    [:db entities-storage]
+    [:components db]
     [:data world :- s/Keyword]
     ]
   (success
@@ -28,7 +28,7 @@
   "Retrieves all entities for world filtered by models."
   {:responses {:default {:schema [hs/Entity]}}}
   [
-    [:db entities-storage]
+    [:components db]
     [:data world :- s/Keyword models :- [s/Keyword]]
     ]
   (success
@@ -40,7 +40,7 @@
   "Retrieves all entities for world filtered by tags."
   {:responses {:default {:schema [hs/Entity]}}}
   [
-    [:db entities-storage]
+    [:components db]
     [:data world :- s/Keyword tags :- [s/Keyword]]
     ]
   (success
@@ -52,7 +52,7 @@
   "Retrieves all entities for world filtered by tags or models."
   {:responses {:default {:schema [hs/Entity]}}}
   [
-    [:db entities-storage]
+    [:components db]
     [:data
       world :- s/Keyword
       tags :- [s/Keyword]
@@ -68,7 +68,7 @@
   "Get entity by id"
   {:responses {:default {:schema hs/Entity}}}
   [
-    [:db entities-storage]
+    [:components db]
     [:data id :- s/Str]
     ]
   (success
@@ -80,7 +80,7 @@
   "Get all entity listeners per id"
   {:responses {:default {:schema [hs/EntityListener]}}}
   [
-    [:db entity-listeners-storage]
+    [:components db]
     [:data entity-id :- s/Str]
     ]
   (success
@@ -94,7 +94,7 @@
   "Add entity"
   {:responses {:default {:schema hs/Entity}}}
   [
-    [:db entities-storage]
+    [:components db]
     data :- hs/Entity
     ]
   ;todo add-entity
@@ -107,7 +107,7 @@
   "Add entity listener"
   {:responses {:default {:schema hs/EntityListener}}}
   [
-    [:db entity-listeners-storage]
+    [:components db]
     data :- hs/EntityListener
     ]
   (success

@@ -12,17 +12,17 @@
     )
   )
 
-(defn find-listeners-by-entity-id [storage entity-id action]
-  (find-all storage
+(defn find-listeners-by-entity-id [db entity-id action]
+  (find-all (:entity-listeners-storage db)
     {:entity-id entity-id :action action}
     (array-map :_id 1)
     )
   )
 
-(defn find-listener-by-id [storage id]
-  (find-one storage id)
+(defn find-listener-by-id [db id]
+  (find-one (:entity-listeners-storage db) id)
   )
 
-(defn save-listener [storage listener]
-  (save storage listener)
+(defn save-listener [db listener]
+  (save (:entity-listeners-storage db) listener)
   )

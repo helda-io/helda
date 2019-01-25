@@ -12,17 +12,17 @@
     )
   )
 
-(defn find-listeners-by-model [storage model]
-  (find-all storage
+(defn find-listeners-by-model [db model]
+  (find-all (:model-listeners-storage db)
     {:model model}
     (array-map :_id 1)
     )
   )
 
-(defn find-listener-by-id [storage id]
-  (find-one storage id)
+(defn find-listener-by-id [db id]
+  (find-one (:model-listeners-storage db) id)
   )
 
-(defn save-listener [storage listener]
-  (save storage listener)
+(defn save-listener [db listener]
+  (save (:model-listeners-storage db) listener)
   )

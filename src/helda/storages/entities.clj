@@ -16,35 +16,39 @@
     )
   )
 
-(defn find-entities-by-world [storage world]
-  (find-all storage {:world world} (array-map :_id 1))
+(defn find-entities-by-world [db world]
+  (find-all
+    (:entity-listeners-storage db)
+    {:world world}
+    (array-map :_id 1)
+    )
   )
 
-(defn find-entities-by-world-and-tags [storage world tags]
-  (find-all storage
+(defn find-entities-by-world-and-tags [db world tags]
+  (find-all (:entity-listeners-storage db)
     {:world world :tags {$in tags}}
     (array-map :_id 1)
     )
   )
 
-(defn find-entities-by-world-and-models [storage world models]
-  (find-all storage
+(defn find-entities-by-world-and-models [db world models]
+  (find-all (:entity-listeners-storage db)
     {:world world :model {$in models}}
     (array-map :_id 1)
     )
   )
 
-(defn find-entities-by-tags-and-models [storage world tags models]
-  (find-all storage
+(defn find-entities-by-tags-and-models [db world tags models]
+  (find-all (:entity-listeners-storage db)
     {:world world :model {$in models} :tags {$in tags}}
     (array-map :_id 1)
     )
   )
 
-(defn find-entity-by-id [storage id]
-  (find-one storage id)
+(defn find-entity-by-id [db id]
+  (find-one (:entity-listeners-storage db) id)
   )
 
-(defn save-entity [storage entity]
-  (save storage entity)
+(defn save-entity [db entity]
+  (save (:entity-listeners-storage db) entity)
   )
