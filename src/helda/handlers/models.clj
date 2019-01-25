@@ -18,9 +18,9 @@
 (defnk ^:query packages-list
   "List of available packages."
   {:responses {:default {:schema [s/Keyword]}}}
-  [[:db models-storage]]
+  [[:components db]]
   (success
-    (storage/packages-list models-storage)
+    (storage/packages-list db)
     )
   )
 
@@ -28,22 +28,22 @@
   "Retrieves all models for package"
   {:responses {:default {:schema [hs/Model]}}}
   [
-    [:db models-storage]
+    [:components db]
     [:data package :- s/Keyword]
     ]
   (success
-    (storage/find-models-by-package models-storage package)
+    (storage/find-models-by-package db package)
     )
   )
 
 (defnk ^:query get-model
   "Get model by id"
   [
-    [:db models-storage]
+    [:components db]
     [:data name :- s/Keyword]
     ]
   (success
-    (storage/find-model-by-name models-storage name)
+    (storage/find-model-by-name db name)
     )
   )
 
@@ -51,11 +51,12 @@
   "Get all model listeners per model"
   {:responses {:default {:schema [hs/ModelListener]}}}
   [
-    [:db model-listeners-storage]
+    ;[:db model-listeners-storage]
+    [:components db]
     [:data model :- s/Keyword]
     ]
   (success
-    (find-listeners-by-model model-listeners-storage model)
+    (find-listeners-by-model db model)
     )
   )
 
@@ -63,11 +64,11 @@
   "Add model"
   {:responses {:default {:schema hs/Model}}}
   [
-    [:db models-storage]
+    [:components db]
     data :- hs/Model
     ]
   (success
-    (storage/save-model models-storage data)
+    (storage/save-model db data)
     )
   )
 
@@ -75,10 +76,10 @@
   "Add model listener"
   {:responses {:default {:schema hs/ModelListener}}}
   [
-    [:db model-listeners-storage]
+    [:components db]
     data :- hs/ModelListener
     ]
   (success
-    (save-listener model-listeners-storage data)
+    (save-listener db data)
     )
   )

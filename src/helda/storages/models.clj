@@ -13,21 +13,21 @@
     )
   )
 
-(defn packages-list [storage]
-  (find-distinct storage :package)
+(defn packages-list [db]
+  (find-distinct (:models-storage db) :package)
   )
 
-(defn find-models-by-package [storage package]
-  (find-all storage
+(defn find-models-by-package [db package]
+  (find-all (:models-storage db)
     {:package package}
     (array-map :full-name 1)
     )
   )
 
-(defn find-model-by-name [storage full-name]
-  (find-one storage :full-name full-name)
+(defn find-model-by-name [db full-name]
+  (find-one (:models-storage db) :full-name full-name)
   )
 
-(defn save-model [storage model]
-  (save storage model)
+(defn save-model [db model]
+  (save (:models-storage db) model)
   )

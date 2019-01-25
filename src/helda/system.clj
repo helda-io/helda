@@ -24,5 +24,7 @@
   )
 
 (defn new-system [] {
-   :db (init-db (init-mongo-db))
+   :components {
+     :db (init-db (init-mongo-db))
+     }
   })
