@@ -13,18 +13,18 @@
 (defnk ^:query tags-list
   "List of available tags. Can be filtered by tags."
   {:responses {:default {:schema [s/Keyword]}}}
-  [[:db worlds-storage]]
+  [[:components db]]
   (success
-    (storage/tags-list worlds-storage)
+    (storage/tags-list db)
     )
   )
 
 (defnk ^:query worlds-list
   "List of available worlds. Can be filtered by tags."
   {:responses {:default {:schema [s/Keyword]}}}
-  [[:db worlds-storage]]
+  [[:components db]]
   (success
-    (storage/worlds-list worlds-storage)
+    (storage/worlds-list db)
     )
   )
 
@@ -32,11 +32,11 @@
   "Find worlds by tags."
   {:responses {:default {:schema [s/Keyword]}}}
   [
-    [:db worlds-storage]
+    [:components db]
     [:data tags :- [s/Str]]
     ]
   (success
-    (storage/find-worlds-by-tags worlds-storage tags)
+    (storage/find-worlds-by-tags db tags)
     )
   )
 
@@ -44,11 +44,11 @@
   "Get world by id"
   {:responses {:default {:schema hs/World}}}
   [
-    [:db worlds-storage]
+    [:components db]
     [:data world :- s/Str]
     ]
   (success
-    (storage/find-world-by-name worlds-storage world)
+    (storage/find-world-by-name db world)
     )
   )
 
@@ -56,11 +56,11 @@
   "Add world"
   {:responses {:default {:schema hs/World}}}
   [
-    [:db worlds-storage]
+    [:components db]
     data :- hs/World
     ]
   ;todo add-entity
   (success
-    (storage/save-world worlds-storage data)
+    (storage/save-world db data)
     )
   )

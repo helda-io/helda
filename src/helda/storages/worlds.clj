@@ -15,22 +15,22 @@
     )
   )
 
-(defn tags-list [storage]
-  (find-distinct storage :tags)
+(defn tags-list [db]
+  (find-distinct (:worlds-storage db) :tags)
   )
 
-(defn worlds-list [storage]
-  (find-all storage {} (array-map :world 1))
+(defn worlds-list [db]
+  (find-all (:worlds-storage db) {} (array-map :world 1))
   )
 
-(defn find-worlds-by-tags [storage tags]
-  (find-all storage {:tags {$in tags}} (array-map :world 1))
+(defn find-worlds-by-tags [db tags]
+  (find-all (:worlds-storage db) {:tags {$in tags}} (array-map :world 1))
   )
 
-(defn find-world-by-name [storage world-name]
-  (find-one storage :world world-name)
+(defn find-world-by-name [db world-name]
+  (find-one (:worlds-storage db) :world world-name)
   )
 
-(defn save-world [storage world]
-  (save storage world)
+(defn save-world [db world]
+  (save (:worlds-storage db) world)
   )

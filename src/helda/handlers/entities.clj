@@ -20,7 +20,7 @@
     [:data world :- s/Keyword]
     ]
   (success
-    (storage/find-entities-by-world entities-storage world)
+    (storage/find-entities-by-world db world)
     )
   )
 
@@ -32,7 +32,7 @@
     [:data world :- s/Keyword models :- [s/Keyword]]
     ]
   (success
-    (storage/find-entities-by-world-and-models entities-storage world models)
+    (storage/find-entities-by-world-and-models db world models)
     )
   )
 
@@ -44,7 +44,7 @@
     [:data world :- s/Keyword tags :- [s/Keyword]]
     ]
   (success
-    (storage/find-entities-by-world-and-tags entities-storage world tags)
+    (storage/find-entities-by-world-and-tags db world tags)
     )
   )
 
@@ -60,7 +60,7 @@
       ]
     ]
   (success
-    (storage/find-entities-by-tags-and-models entities-storage world tags models)
+    (storage/find-entities-by-tags-and-models db world tags models)
     )
   )
 
@@ -72,7 +72,7 @@
     [:data id :- s/Str]
     ]
   (success
-    (storage/find-entity-by-id entities-storage id)
+    (storage/find-entity-by-id db id)
     )
   )
 
@@ -85,7 +85,7 @@
     ]
   (success
     (listeners-storage/find-listeners-by-entity-id
-      entity-listeners-storage entity-id
+      db entity-id
       )
     )
   )
@@ -99,7 +99,7 @@
     ]
   ;todo add-entity
   (success
-    (storage/save-entity entities-storage data)
+    (storage/save-entity db data)
     )
   )
 
@@ -111,6 +111,6 @@
     data :- hs/EntityListener
     ]
   (success
-    (listeners-storage/save-listener entity-listeners-storage data)
+    (listeners-storage/save-listener db data)
     )
   )
