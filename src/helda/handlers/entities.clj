@@ -6,6 +6,7 @@
 
     [helda.schema :as hs]
 
+    [helda.listeners.invoker :refer [fire-action]]
     [helda.storages.entities :as storage]
     ;todo get rid of :as
     [helda.storages.entity-listeners :as listeners-storage]
@@ -87,6 +88,18 @@
     (listeners-storage/find-listeners-by-entity-id
       db entity-id
       )
+    )
+  )
+
+(defnk ^:command perform-action
+  "Perform action"
+  {:responses {:default {:schema hs/ActionResponse}}}
+  [
+    [:components db]
+    data :- hs/ActionRequest
+    ]
+  (success
+    (fire-action db data)
     )
   )
 

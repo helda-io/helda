@@ -11,6 +11,10 @@
   (s/optional-key :action-ctx) {s/Keyword s/Str} ;entity-id per key
   })
 
+(s/defschema ActionResponse {
+  :action-ctx {s/Keyword Entity} ;updated entities
+  })
+
 (s/defschema Action{
   :source-model s/Str
   (s/optional-key :action-ctx) {s/Keyword s/Str} ;model per key
