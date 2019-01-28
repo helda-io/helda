@@ -20,6 +20,10 @@
 
 (defn invoke-listener [listener action-event]
   (println "Posting " action-event)
+  (client/post (:action-url listener) {
+    :form-params action-event
+    :content-type :json
+    })
   )
 
 (defn fire-action [db action-request]
