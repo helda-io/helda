@@ -17,6 +17,7 @@
   })
 
 (s/defschema ActionEvent {
+  :action s/Str
   :source-entity Entity
   :target-entity Entity
   (s/optional-key :action-ctx) {s/Keyword Entity}
