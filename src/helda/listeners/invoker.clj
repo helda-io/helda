@@ -1,4 +1,4 @@
-(ns helda-server.listeners.invoker
+(ns helda.listeners.invoker
   (:require
     [clj-http.client :as client]
     [helda.storages.entity-listeners :refer [find-listeners-by-entity-id]]

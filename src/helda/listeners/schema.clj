@@ -1,4 +1,4 @@
-(ns helda-server.listeners.schema
+(ns helda.listeners.schema
   (:require
     [schema.core :as s]
     )
