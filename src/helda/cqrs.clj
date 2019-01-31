@@ -36,6 +36,7 @@
           #'e/entities-by-tags
           #'e/entities-by-tags-and-models
           #'e/get-entity
+          #'e/perform-action
           #'e/save-entity
           #'e/add-entity-listener
           ]

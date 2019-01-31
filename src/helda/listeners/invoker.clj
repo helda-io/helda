@@ -20,16 +20,19 @@
 
 (defn invoke-listener [listener action-event]
   (println "Posting " action-event)
-  (client/post (:action-url listener) {
-    :form-params action-event
-    :content-type :json
-    })
+  (:body
+    (client/post (:action-url listener) {
+      :form-params action-event
+      :content-type :json
+      :as :json-strict
+      })
+    )
   )
 
 (defn fire-action [db action-request]
   (let [action-event (populate-action-event db action-request)]
     (map
-      #(invoke-listener % db action-event)
+      #(invoke-listener % action-event)
       (find-listeners-by-entity-id db
         (:target-entity-id action-request)
         (:action action-request)
