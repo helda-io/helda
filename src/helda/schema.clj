@@ -13,7 +13,8 @@
 
 (s/defschema Action{
   :source-model s/Str
-  (s/optional-key :action-ctx) {s/Keyword s/Str} ;model per key
+  (s/optional-key :request-ctx) {s/Keyword s/Str} ;model per key
+  (s/optional-key :response-ctx) {s/Keyword s/Str} ;model per key
   })
 
 (s/defschema Model {
