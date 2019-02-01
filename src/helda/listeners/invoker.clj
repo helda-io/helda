@@ -2,7 +2,7 @@
   (:require
     [clj-http.client :as client]
     [helda.storages.entity-listeners :refer [find-listeners-by-entity-id]]
-    [helda.storages.entities :refer [find-entity-by-id]]
+    [helda.storages.entities :refer [find-entity-by-id save-entity]]
     )
   )
 
