@@ -25,7 +25,7 @@
     (s/optional-key :description) s/Str
 
     :extends [s/Keyword]
-    :fields {s/Keyword s/Str} ;{field schema}
+    :fields {s/Keyword s/Str} ;{field description or type at least}
     :actions {s/Keyword Action}
   })
 
