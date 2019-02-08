@@ -47,8 +47,10 @@
     (s/optional-key :parent-id) s/Str
   })
 
+;todo get rid of duplication, let's have a common schema
 (s/defschema ActionResponse {
   :action-ctx {s/Keyword Entity} ;updated entities
+  :reasoning-msg s/Str
   })
 
 (s/defschema ModelListener {

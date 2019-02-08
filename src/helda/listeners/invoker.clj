@@ -19,23 +19,25 @@
   )
 
 (defn invoke-listener [db listener action-event]
+  ;todo add error processing
   (println "Posting " action-event)
-  (if-let [
-    action-ctx (get-in
-      (client/post (:action-url listener) {
-        :form-params action-event
-        :content-type :json
-        :as :json-strict
-        })
-      [:body :action-ctx]
-      )
+  (let [
+    handler-response (client/post (:action-url listener) {
+      :form-params action-event
+      :content-type :json
+      :as :json-strict
+      })
     ]
-    {:action-ctx
-      (zipmap
-        (keys action-ctx)
-        (->> action-ctx vals (mapv #(save-entity db %)))
-        )
-      }
+    (println "Getting response " handler-response)
+    (if-let [action-ctx (get-in handler-response [:body :action-ctx])]
+      {:action-ctx
+        (zipmap
+          (keys action-ctx)
+          (->> action-ctx vals (mapv #(save-entity db %)))
+          )
+        :reasoning-msg (:reasoning-msg handler-response)
+        }
+      )
     )
   )
 
