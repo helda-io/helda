@@ -21,8 +21,10 @@
   :source-entity Entity
   :target-entity Entity
   (s/optional-key :action-ctx) {s/Keyword Entity}
+  (s/optional-key :params-ctx) {s/Keyword s/Any}
   })
 
 (s/defschema ActionResponse {
   :action-ctx {s/Keyword Entity} ;updated entities
+  :reasoning-msg s/Str
   })
