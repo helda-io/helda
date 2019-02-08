@@ -35,7 +35,7 @@
           (keys action-ctx)
           (->> action-ctx vals (mapv #(save-entity db %)))
           )
-        :reasoning-msg (:reasoning-msg handler-response)
+        :reasoning-msg (get-in handler-response [:body :reasoning-msg])
         }
       )
     )
