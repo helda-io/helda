@@ -20,8 +20,6 @@
           #'m/package-models
           #'m/get-model
           #'m/save-model
-          #'m/listeners-by-model
-          #'m/add-model-listener
           ]
         :worlds [
           #'w/tags-list
@@ -37,8 +35,6 @@
           #'e/entities-by-tags-and-models
           #'e/get-entity
           #'e/perform-action
-          #'e/save-entity
-          #'e/add-entity-listener
           ]
        }
        :context system

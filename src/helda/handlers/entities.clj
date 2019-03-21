@@ -6,10 +6,8 @@
 
     [helda.schema :as hs]
 
-    [helda.listeners.invoker :refer [fire-action]]
+    [helda.actions.invoker :refer [fire-action]]
     [helda.storages.entities :as storage]
-    ;todo get rid of :as
-    [helda.storages.entity-listeners :as listeners-storage]
     )
   )
 
@@ -77,20 +75,6 @@
     )
   )
 
-(defnk ^:query listeners-by-entity-id
-  "Get all entity listeners per id"
-  {:responses {:default {:schema [hs/EntityListener]}}}
-  [
-    [:components db]
-    [:data entity-id :- s/Str]
-    ]
-  (success
-    (listeners-storage/find-listeners-by-entity-id
-      db entity-id
-      )
-    )
-  )
-
 (defnk ^:command perform-action
   "Perform action"
   {:responses {:default {:schema hs/ActionResponse}}}
@@ -113,17 +97,5 @@
   ;todo add-entity
   (success
     (storage/save-entity db data)
-    )
-  )
-
-(defnk ^:command add-entity-listener
-  "Add entity listener"
-  {:responses {:default {:schema hs/EntityListener}}}
-  [
-    [:components db]
-    data :- hs/EntityListener
-    ]
-  (success
-    (listeners-storage/save-listener db data)
     )
   )

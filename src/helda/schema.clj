@@ -52,25 +52,3 @@
   :action-ctx {s/Keyword Entity} ;updated entities
   :reasoning-msg s/Str
   })
-
-(s/defschema ModelListener {
-    :action-url s/Str
-    :world s/Keyword
-    :action s/Keyword
-    :model s/Keyword
-  })
-
-(s/defschema EntityListener {
-    :action-url s/Str
-    :world s/Keyword
-    :action s/Keyword
-    :entity-id s/Str
-  })
-
-(s/defschema Event {
-    :id s/Str
-    :listener-id s/Str
-    :action s/Keyword
-    :action-ctx Entity
-    :entity Entity
-  })

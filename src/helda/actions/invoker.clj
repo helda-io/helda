@@ -1,7 +1,6 @@
-(ns helda.listeners.invoker
+(ns helda.listeners.actions
   (:require
     [clj-http.client :as client]
-    [helda.storages.entity-listeners :refer [find-listeners-by-entity-id]]
     [helda.storages.entities :refer [find-entity-by-id save-entity]]
     )
   )
@@ -18,7 +17,7 @@
     }
   )
 
-(defn invoke-listener [db listener action-event]
+(defn invoke-action [db action-event]
   ;todo add error processing
   (println "Posting " action-event)
   (let [
@@ -44,11 +43,7 @@
 (defn fire-action [db action-request]
   (let [action-event (populate-action-event db action-request)]
     (->>
-      (find-listeners-by-entity-id db
-        (:target-entity-id action-request)
-        (:action action-request)
-        )
-      (map #(invoke-listener db % action-event))
+      (map #(invoke-action db action-event))
       first
       )
     )
