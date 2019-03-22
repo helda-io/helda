@@ -14,6 +14,7 @@
       (-> action-request :action-ctx keys)
       (->> action-request :action-ctx vals (map #(find-entity-by-id db %)))
       )
+    :params-ctx (:params-ctx action-request)
     }
   )
 
@@ -29,11 +30,13 @@
     ]
     (println "Getting response " handler-response)
     (if-let [action-ctx (get-in handler-response [:body :action-ctx])]
-      {:action-ctx
+      {
+        :action-ctx
         (zipmap
           (keys action-ctx)
           (->> action-ctx vals (mapv #(save-entity db %)))
           )
+        :params-ctx (get-in handler-response [:body :params-ctx])
         :reasoning-msg (get-in handler-response [:body :reasoning-msg])
         }
       )
@@ -42,9 +45,6 @@
 
 (defn fire-action [db action-request]
   (let [action-event (populate-action-event db action-request)]
-    (->>
-      (map #(invoke-action db action-event))
-      first
-      )
+    (invoke-action db action-event)
     )
   )
