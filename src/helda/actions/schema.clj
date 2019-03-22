@@ -1,4 +1,4 @@
-(ns helda.listeners.actions
+(ns helda.actions.schema
   (:require
     [schema.core :as s]
     )
