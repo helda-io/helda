@@ -8,13 +8,27 @@
   :action s/Str
   :source-entity-id s/Str
   :target-entity-id s/Str
+  ;todo id or whole instance?
   (s/optional-key :action-ctx) {s/Keyword s/Str} ;entity-id per key
+  (s/optional-key :params-ctx) {s/Keyword s/Any}
+  })
+
+;todo get rid of duplication, let's have a common schema
+(s/defschema ActionResponse {
+  :action-ctx {s/Keyword Entity} ;updated entities
+  (s/optional-key :params-ctx) {s/Keyword s/Any}
+  :reasoning-msg s/Str
+  })
+
+(s/defschema ActionCtxMeta{
+  :entities {s/Keyword s/Str} ;model per key
+  :params-ctx {s/Keyword s/Str} ;simple properties
   })
 
 (s/defschema Action{
   :source-model s/Str
-  (s/optional-key :request-ctx) {s/Keyword s/Str} ;model per key
-  (s/optional-key :response-ctx) {s/Keyword s/Str} ;model per key
+  :request-ctx ActionCtxMeta
+  :response-ctx ActionCtxMeta
   })
 
 (s/defschema Model {
@@ -45,10 +59,4 @@
 
     (s/optional-key :id) s/Str
     (s/optional-key :parent-id) s/Str
-  })
-
-;todo get rid of duplication, let's have a common schema
-(s/defschema ActionResponse {
-  :action-ctx {s/Keyword Entity} ;updated entities
-  :reasoning-msg s/Str
   })

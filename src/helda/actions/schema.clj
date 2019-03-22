@@ -20,11 +20,15 @@
   :action s/Str
   :source-entity Entity
   :target-entity Entity
-  (s/optional-key :action-ctx) {s/Keyword Entity}
-  (s/optional-key :params-ctx) {s/Keyword s/Any}
+  :action-ctx {s/Keyword Entity} ;request-ctx entities
+  :params-ctx {s/Keyword s/Any}
   })
 
 (s/defschema ActionResponse {
-  :action-ctx {s/Keyword Entity} ;updated entities
+  :action s/Str
+  :source-entity Entity
+  :target-entity Entity
+  :action-ctx {s/Keyword Entity} ;response-ctx entities
+  :params-ctx {s/Keyword s/Any}
   :reasoning-msg s/Str
   })
