@@ -8,7 +8,6 @@
   :action s/Str
   :source-entity-id s/Str
   :target-entity-id s/Str
-  ;todo id or whole instance?
   (s/optional-key :action-ctx) {s/Keyword s/Str} ;entity-id per key
   (s/optional-key :params-ctx) {s/Keyword s/Any}
   })
