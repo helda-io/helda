@@ -4,6 +4,12 @@
     )
   )
 
+(s/defschema Module {
+  :id s/Keyword
+  (s/optional-key :description) s/Str
+  :url s/Str
+  })
+
 (s/defschema ActionRequest{
   :action s/Str
   :source-entity-id s/Str
@@ -21,6 +27,7 @@
   :source-model s/Str
   :request-ctx ActionCtxMeta
   :response-ctx ActionCtxMeta
+  :module-id s/Keyword
   })
 
 (s/defschema Model {
@@ -48,6 +55,7 @@
     (s/optional-key :description) s/Str
 
     :attrs {s/Keyword s/Any}
+    :actions {s/Keyword s/Str} ;module-id per action
 
     (s/optional-key :id) s/Str
     (s/optional-key :parent-id) s/Str

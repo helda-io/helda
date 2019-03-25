@@ -1,4 +1,4 @@
-(ns helda.listeners.actions
+(ns helda.actions.invoker
   (:require
     [clj-http.client :as client]
     [helda.storages.entities :refer [find-entity-by-id save-entity]]
