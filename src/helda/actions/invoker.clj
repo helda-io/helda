@@ -18,11 +18,11 @@
     }
   )
 
-(defn invoke-action [db action-event]
+(defn invoke-action [db url action-event]
   ;todo add error processing
   (println "Posting " action-event)
   (let [
-    handler-response (client/post (:action-url listener) {
+    handler-response (client/post url {
       :form-params action-event
       :content-type :json
       :as :json-strict
@@ -43,8 +43,19 @@
     )
   )
 
+(defn lookup-action-url [db action-event]
+  (let [
+    module-id (get-in action-event [:target-entity :actions (:action action-event)])
+    ]
+    module-id ;todo lookup module details from db
+    )
+  )
+
 (defn fire-action [db action-request]
-  (let [action-event (populate-action-event db action-request)]
-    (invoke-action db action-event)
+  (let [
+    action-event (populate-action-event db action-request)
+    url (lookup-action-url action-event)
+    ]
+    (invoke-action db url action-event)
     )
   )
