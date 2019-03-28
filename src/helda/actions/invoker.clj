@@ -2,6 +2,7 @@
   (:require
     [clj-http.client :as client]
     [helda.storages.entities :refer [find-entity-by-id save-entity]]
+    [helda.storages.modules :refer [find-module-by-id]]
     )
   )
 
@@ -44,10 +45,10 @@
   )
 
 (defn lookup-action-url [db action-event]
-  (let [
-    module-id (get-in action-event [:target-entity :actions (:action action-event)])
-    ]
-    module-id ;todo lookup module details from db
+  (some->> [:target-entity :actions (:action action-event)]
+    (get-in action-event)
+    (find-module-by-id db)
+    :url
     )
   )
 
