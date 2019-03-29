@@ -95,6 +95,7 @@
     data :- hs/Entity
     ]
   ;todo add-entity
+  ;todo validate and add actions
   (success
     (storage/save-entity db data)
     )
