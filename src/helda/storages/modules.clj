@@ -12,6 +12,10 @@
     )
   )
 
+(defn modules-list [db]
+  (find-all (:modules-storage db) {} (array-map :module-id 1))
+  )
+
 (defn find-module-by-id [db module-id]
   (find-one (:modules-storage db) :module-id module-id)
   )
