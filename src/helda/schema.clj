@@ -5,7 +5,7 @@
   )
 
 (s/defschema Module {
-  :id s/Keyword
+  :module-id s/Keyword
   (s/optional-key :description) s/Str
   :url s/Str
   })
