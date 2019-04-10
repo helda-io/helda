@@ -40,6 +40,7 @@
     :extends [s/Keyword]
     :fields {s/Keyword s/Str} ;{field description or type at least}
     :actions {s/Keyword Action}
+    :module-id s/Keyword
   })
 
 (s/defschema World {
