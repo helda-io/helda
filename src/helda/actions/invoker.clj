@@ -35,7 +35,10 @@
   )
 
 (defn invoke-script [module action-event]
-  ;todo implement
+  (binding [*ns* (create-ns (symbol (:module-id module)))]
+    (-> module :script load-string)
+    (apply (:action action-event) action-event)
+    )
   )
 
 (defn process-action-response [db resp]
