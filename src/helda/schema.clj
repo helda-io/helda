@@ -7,7 +7,9 @@
 (s/defschema Module {
   :module-id s/Keyword
   (s/optional-key :description) s/Str
-  :url s/Str
+  :kind (s/enum :rest :clojure)
+  (s/optional-key :url) s/Str
+  (s/optional-key :script) s/Str
   })
 
 (s/defschema ActionRequest{
