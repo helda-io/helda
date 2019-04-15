@@ -19,44 +19,56 @@
     }
   )
 
-(defn invoke-action [db url action-event]
+(defn invoke-rest [module action-event]
   ;todo add error processing
   (println "Posting " action-event)
   (let [
-    handler-response (client/post url {
+    handler-response (client/post (:url module) {
       :form-params action-event
       :content-type :json
       :as :json-strict
       })
     ]
     (println "Getting response " handler-response)
-    (if-let [action-ctx (get-in handler-response [:body :action-ctx])]
-      {
-        :action-ctx
-        (zipmap
-          (keys action-ctx)
-          (->> action-ctx vals (mapv #(save-entity db %)))
-          )
-        :params-ctx (get-in handler-response [:body :params-ctx])
-        :reasoning-msg (get-in handler-response [:body :reasoning-msg])
-        }
-      )
+    (:body handler-response)
     )
   )
 
-(defn lookup-action-url [db action-event]
+(defn invoke-script [module action-event]
+  ;todo implement
+  )
+
+(defn process-action-response [db resp]
+  (if-let [action-ctx (:action-ctx resp)]
+    {
+      :action-ctx
+      (zipmap
+        (keys action-ctx)
+        (->> action-ctx vals (mapv #(save-entity db %)))
+        )
+      :params-ctx (:params-ctx resp)
+      :reasoning-msg (:reasoning-msg resp)
+      }
+    )
+  )
+
+(defn lookup-module [db action-event]
   (some->> [:target-entity :actions (:action action-event)]
     (get-in action-event)
     (find-module-by-id db)
-    :url
     )
   )
 
 (defn fire-action [db action-request]
   (let [
     action-event (populate-action-event db action-request)
-    url (lookup-action-url action-event)
+    module (lookup-module db action-event)
     ]
-    (invoke-action db url action-event)
+    (process-action-response db
+      (if (-> module :kind (= :rest))
+        (invoke-rest module action-event)
+        (invoke-script module action-event)
+        )
+      )
     )
   )
