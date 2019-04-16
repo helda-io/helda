@@ -35,11 +35,12 @@
   )
 
 (defn invoke-script [module action-event]
+  ;todo experimental mode, not finished yet
   (println "Invoking module " module " for action event " action-event)
-  (binding [*ns* (create-ns (symbol (:module-id module)))]
+  ; (binding [*ns* (create-ns (symbol (:module-id module)))]
     (-> module :script load-string)
-    (apply (:action action-event) action-event)
-    )
+    ((-> :action action-event symbol resolve) action-event)
+    ; )
   )
 
 (defn process-action-response [db resp]
