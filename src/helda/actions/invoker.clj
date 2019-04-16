@@ -35,6 +35,7 @@
   )
 
 (defn invoke-script [module action-event]
+  (println "Invoking module " module " for action event " action-event)
   (binding [*ns* (create-ns (symbol (:module-id module)))]
     (-> module :script load-string)
     (apply (:action action-event) action-event)
@@ -57,7 +58,7 @@
   )
 
 (defn lookup-module [db action-event]
-  (some->> [:target-entity :actions (:action action-event)]
+  (some->> [:target-entity :actions (-> :action action-event keyword)]
     (get-in action-event)
     (find-module-by-id db)
     )
