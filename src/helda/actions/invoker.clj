@@ -35,7 +35,7 @@
   )
 
 (defn invoke-script [module action-event]
-  ;todo experimental mode, not finished yet
+  ;todo experimental unsafe mode, not finished yet
   (println "Invoking module " module " for action event " action-event)
   ; (binding [*ns* (create-ns (symbol (:module-id module)))]
     (-> module :script load-string)
