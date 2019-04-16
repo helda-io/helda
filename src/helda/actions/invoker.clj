@@ -42,6 +42,7 @@
   )
 
 (defn process-action-response [db resp]
+  (println "Processing response: " resp)
   (if-let [action-ctx (:action-ctx resp)]
     {
       :action-ctx

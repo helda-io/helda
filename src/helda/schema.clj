@@ -27,8 +27,8 @@
 
 (s/defschema Action{
   :source-model s/Str
-  :request-ctx ActionCtxMeta
-  :response-ctx ActionCtxMeta
+  (s/optional-key :request-ctx ActionCtxMeta)
+  (s/optional-key :response-ctx ActionCtxMeta)
   :module-id s/Keyword
   })
 
