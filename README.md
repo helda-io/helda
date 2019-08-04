@@ -5,8 +5,7 @@
 ### Run the application locally
 
 ```
-lein repl
-user=> (go)
+lein run
 ```
 
 ### Packaging and running as standalone jar
